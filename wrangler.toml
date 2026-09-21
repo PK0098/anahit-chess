@@ -1,0 +1,17 @@
+name = "anahit-chess"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "web"
+
+[vars]
+SITE_URL = "https://anahit-chess.pages.dev"
+MAIL_FROM = "Anahit Chess <onboarding@resend.dev>"
+ADMIN_EMAIL = "pya.karimi@gmail.com"
+KNOCKOUT_FROM = "12"
+CONFIRM_HOURS = "48"
+CLOSE_DATE = "2026-09-30T23:59:59+04:00"
+START_DATE = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "anahit-chess"
+database_id = "5595d5e9-9445-49a7-b4c5-c2bf8fc27639"
