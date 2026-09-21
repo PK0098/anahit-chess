@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Anahit Chess</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1.small { font-size: clamp(30px, 5vw, 44px); margin-bottom: 18px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .box { background: var(--paper); border: 2px solid var(--ink); padding: 16px; margin-bottom: 20px; box-shadow: 4px 4px 0 var(--ink); }
+  .box h2 { font-size: 20px; margin-bottom: 10px; }
+  .kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .kv div { border: 1px solid var(--ink); padding: 8px 10px; font-size: 12px; }
+  .kv b { display: block; font-family: var(--grot); font-size: 20px; }
+  table.adm { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.adm th, table.adm td { text-align: left; padding: 6px 8px; border-bottom: 1px solid rgba(28,26,23,0.2); vertical-align: middle; }
+  table.adm th { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tscroll { overflow-x: auto; }
+  input[type=text], input[type=email], input[type=password], select { font: inherit; font-size: 13px; padding: 8px 10px; border: 1.5px solid var(--ink); background: #fff; color: var(--ink); min-height: 40px; }
+  .btn.sm { min-height: 36px; padding: 6px 12px; font-size: 13px; }
+  .btn-dark { background: var(--ink); color: var(--cream); border: 2px solid var(--ink); }
+  .btn-orange { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); }
+  .btn-line { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+  .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .msg { padding: 10px 12px; margin-top: 10px; font-size: 13px; border: 1.5px solid var(--ink); background: var(--gold); }
+  .msg.bad { background: var(--orange); }
+  .msg.ok { background: var(--green); }
+  .tag { display: inline-block; padding: 2px 6px; font-size: 11px; border: 1px solid var(--ink); }
+  .tag.confirmed { background: var(--ink); color: var(--cream); } .tag.reported { background: var(--gold); } .tag.disputed { background: var(--orange); }
+</style>
+</head>
+<body data-phase="play">
+<header class="topbar"><nav class="nav"><div class="wrap nav-inner">
+  <a href="/" class="brand"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span class="brand-name">ANAHIT_CHESS</span></a>
+  <div class="nav-links"><a href="/">Site</a><a href="#" id="logout">Forget key</a></div>
+</div></nav></header>
+<main class="page">
+  <h1 class="small">Organizer<span class="accent">.</span></h1>
+  <div id="login" class="box" hidden>
+    <h2>Admin key</h2>
+    <div class="row"><input type="password" id="key" placeholder="paste the admin key" style="flex:1 1 240px"><button class="btn btn-dark sm" id="key-go">Enter</button></div>
+    <div id="login-msg"></div>
+  </div>
+  <div id="app" hidden>
+    <div class="box"><h2>Status</h2><div class="kv" id="kv"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn btn-orange" id="close-btn">Close registration &amp; create pairings →</button>
+        <button class="btn btn-line sm" id="refresh">Refresh</button>
+      </div>
+      <div id="msg"></div>
+    </div>
+    <div class="box"><h2>Players (<span id="pcount">0</span>)</h2><div class="tscroll"><table class="adm" id="players"></table></div></div>
+    <div class="box"><h2>Games (<span id="gcount">0</span>)</h2><div class="tscroll"><table class="adm" id="games"></table></div></div>
+    <div class="box"><h2>Test email</h2><div class="row"><input type="email" id="test-to" placeholder="you@example.com" style="flex:1 1 240px"><button class="btn btn-line sm" id="test-go">Send test</button></div><div id="test-msg"></div></div>
+  </div>
+</main>
+<script src="admin.js"></script>
+</body>
+</html>

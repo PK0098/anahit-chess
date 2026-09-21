@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your games · Anahit Chess</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c1a17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page { max-width: 640px; margin: 0 auto; padding: 24px 16px 64px; }
+  .me { display: flex; align-items: center; gap: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--orange); padding: 18px; margin-bottom: 28px; }
+  .me .avatar.md { margin-top: 0; }
+  .me-name { font-family: var(--grot); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
+  .me-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .g { background: var(--paper); border: 2px solid var(--ink); padding: 18px; margin-bottom: 14px; box-shadow: 4px 4px 0 var(--ink); }
+  .g.focus { box-shadow: 6px 6px 0 var(--orange); }
+  .g-round { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); font-weight: 600; }
+  .g-vs { font-family: var(--grot); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; margin-top: 6px; line-height: 1.15; }
+  .g-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .g-state { margin-top: 12px; padding: 10px 12px; background: var(--ink); color: var(--cream); font-size: 13px; line-height: 1.5; }
+  .g-state.ok { background: var(--green); color: var(--ink); }
+  .g-state.warn { background: var(--gold); color: var(--ink); }
+  .g-state.bad { background: var(--orange); color: var(--ink); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .actions .btn { flex: 1 1 120px; justify-content: center; min-height: 48px; }
+  .btn-dark { background: var(--ink); color: var(--cream); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--orange); }
+  .btn-dark:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--orange); }
+  .btn-line { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+  .btn-line:hover { background: var(--ink); color: var(--cream); }
+  .btn-orange { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .btn-orange:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .empty { padding: 40px 16px; text-align: center; color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .err { margin-top: 10px; padding: 8px 10px; background: var(--orange); border: 1.5px solid var(--ink); font-size: 12.5px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+  h1.small { font-size: clamp(30px, 6vw, 44px); margin-bottom: 18px; }
+</style>
+</head>
+<body data-phase="play">
+<header class="topbar">
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="/" class="brand"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span class="brand-name">ANAHIT_CHESS</span></a>
+      <div class="nav-links"><a href="/#standings">Standings</a><a href="/#players">Players</a></div>
+    </div>
+  </nav>
+</header>
+<main class="page">
+  <h1 class="small">Your games<span class="accent">.</span></h1>
+  <div id="me" class="me" hidden><div id="me-avatar"></div><div><div class="me-name" id="me-name"></div><div class="me-sub" id="me-sub"></div></div></div>
+  <div id="list"></div>
+  <div id="empty" class="empty" hidden></div>
+</main>
+<footer class="footer"><div class="wrap">Organized with love by Pouya. <span class="accent">1-0</span></div></footer>
+<script src="game.js"></script>
+</body>
+</html>

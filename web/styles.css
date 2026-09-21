@@ -283,3 +283,36 @@ h1 { font-size: clamp(44px, 9vw, 108px); line-height: 0.9; text-wrap: balance; m
   .coin, .blink { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* FORMAT SWITCH: standings vs bracket */
+[data-format="ko"] #standings { display: none !important; }
+body:not([data-format="ko"]) #bracket { display: none !important; }
+
+/* FORM ERROR */
+.form-error { margin-top: 12px; padding: 8px 10px; background: var(--orange); color: var(--ink); font-size: 12.5px; line-height: 1.4; border: 1.5px solid var(--ink); }
+
+/* CHAMPION */
+.champion { background: var(--gold); color: var(--ink); border-bottom: 2px solid var(--ink); }
+.champion-inner { display: flex; align-items: center; gap: 18px; padding-top: 18px; padding-bottom: 18px; }
+.champion-piece { font-size: 48px; line-height: 1; }
+.champion-k { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+.champion-name { font-family: var(--grot); font-weight: 700; font-size: clamp(24px, 4vw, 40px); letter-spacing: -0.03em; line-height: 1; }
+.champion-sub { font-size: 13px; margin-top: 4px; }
+
+/* BRACKET */
+.br-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+.br-cols { display: flex; gap: 24px; align-items: stretch; min-width: max-content; }
+.br-col { display: flex; flex-direction: column; justify-content: space-around; gap: 14px; width: 220px; }
+.br-head { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 4px; }
+.br-game { background: var(--paper); color: var(--ink); border: 2px solid var(--cream); box-shadow: 4px 4px 0 var(--orange); }
+.br-game.tbd { opacity: 0.35; box-shadow: none; }
+.br-p { padding: 9px 12px; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.br-p + .br-p { border-top: 1px solid rgba(28,26,23,0.2); }
+.br-p.win { background: var(--ink); color: var(--cream); }
+.br-p.lost { color: var(--muted); font-weight: 400; text-decoration: line-through; }
+.br-p.bye { color: var(--muted); font-style: italic; font-weight: 400; }
+.br-status { padding: 6px 12px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-top: 1px dashed rgba(28,26,23,0.3); }
+
+/* mock-only helpers */
+.mock-only { display: none; }
+body.mock .mock-only { display: block; }

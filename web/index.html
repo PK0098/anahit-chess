@@ -40,7 +40,7 @@
       <div class="nav-links">
         <a href="#rules"><span class="idx">[1] </span>Rules</a>
         <a href="#register" class="accent" data-only="registration"><span class="idx">[2] </span>Register</a>
-        <a href="#standings" data-only="play"><span class="idx">[2] </span>Standings</a>
+        <a href="#standings" data-only="play"><span class="idx">[2] </span><span id="nav-standings">Standings</span></a>
         <a href="#players"><span class="idx">[3] </span>Players</a>
       </div>
     </div>
@@ -60,7 +60,7 @@
         <p class="lede">May the best pawn win.<br>Ten minutes across a board is the fastest way to meet someone from another team at Anahit. <span data-only="registration">Sign up, learn a few names, lose gracefully.</span><span data-only="play">Play everyone, learn a few names, lose gracefully.</span></p>
         <div class="cta-row">
           <a href="#register" class="btn btn-primary" data-only="registration">Register now <span aria-hidden="true">→</span></a>
-          <a href="#standings" class="btn btn-primary" data-only="play">See standings <span aria-hidden="true">→</span></a>
+          <a href="#standings" class="btn btn-primary" data-only="play" id="cta-standings">See standings <span aria-hidden="true">→</span></a>
           <a href="#rules" class="btn btn-ghost">Rules</a>
         </div>
       </div>
@@ -70,6 +70,11 @@
     </div>
   </div>
 </section>
+
+<!-- CHAMPION (done phase) -->
+<div class="champion" id="champion" hidden>
+  <div class="wrap champion-inner"><span class="champion-piece">♔</span><div><div class="champion-k">Champion</div><div class="champion-name" id="champion-name"></div><div class="champion-sub" id="champion-company"></div></div></div>
+</div>
 
 <!-- TICKER (play only) -->
 <div class="ticker" id="ticker" data-only="play" title="Drag me"><div class="ticker-track" id="ticker-track"></div></div>
@@ -197,6 +202,7 @@
             <input type="text" id="f-company" placeholder="Company, or freelance" autocomplete="organization" class="f-small">
             <input type="email" id="f-email" required placeholder="you@anahit.am" autocomplete="email" class="f-small">
           </div>
+          <div class="form-error" id="form-error" hidden></div>
           <button type="submit" class="btn btn-submit">Register <span aria-hidden="true">→</span></button>
           <div class="fine">Email stays with the organizer. Photo goes on the card.</div>
         </form>
@@ -247,6 +253,20 @@
   </div>
 </section>
 
+<!-- BRACKET (play only, knockout) -->
+<section id="bracket" class="standings bracket" data-only="play">
+  <div class="wrap section-pad">
+    <div class="standings-head">
+      <div>
+        <div class="kicker">§ 02 / Knockout</div>
+        <h2>The bracket<span class="accent">.</span></h2>
+      </div>
+      <div class="updated"><span class="live"></span>lose and you're out</div>
+    </div>
+    <div class="br-scroll"><div class="br-cols" id="bracket-cols"></div></div>
+  </div>
+</section>
+
 <div class="checker alt" aria-hidden="true"></div>
 
 <!-- PLAYERS -->
@@ -263,7 +283,7 @@
 
 <footer class="footer">
   <div class="wrap">Organized with love by Pouya. <span class="accent">1-0</span></div>
-  <div class="wrap dev">preview: <a href="?phase=registration">registration phase</a> · <a href="?phase=play">play phase</a></div>
+  <div class="wrap dev mock-only">preview: <a href="?phase=registration">registration phase</a> · <a href="?phase=play">play phase</a></div>
 </footer>
 
 <script src="data.js"></script>
