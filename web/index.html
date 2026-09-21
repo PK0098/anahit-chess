@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anahit Friendly Chess Tournament</title>
+<meta name="description" content="A friendly 10+0 chess tournament for everyone working at Anahit, Yerevan. Meet people from other teams. Lose gracefully.">
+<meta name="theme-color" content="#1c1a17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-phase="registration">
+
+<!-- TOAST (registration) -->
+<div id="toast" class="toast" role="status" hidden>
+  <div class="toast-icon">♟</div>
+  <div class="toast-body">
+    <div class="toast-title">You're on the board, <span id="toast-name"></span>.</div>
+    <div class="toast-text">The organizer will check your entry and send a confirmation email to <span id="toast-email"></span>. Until then, practice your openings.</div>
+  </div>
+  <button type="button" class="toast-close" id="toast-close" aria-label="Dismiss">×</button>
+</div>
+
+<header class="topbar">
+  <!-- COUNTDOWN BAR (registration only) -->
+  <div class="countbar" data-only="registration">
+    <div class="wrap countbar-inner">
+      <span class="countbar-label"><span class="blink"></span>Closes Sept 30</span>
+      <span class="countbar-time" id="countdown">—</span>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span class="brand-name">ANAHIT_CHESS</span>
+      </a>
+      <div class="nav-links">
+        <a href="#rules"><span class="idx">[1] </span>Rules</a>
+        <a href="#register" class="accent" data-only="registration"><span class="idx">[2] </span>Register</a>
+        <a href="#standings" data-only="play"><span class="idx">[2] </span>Standings</a>
+        <a href="#players"><span class="idx">[3] </span>Players</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero">
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-caption" aria-hidden="true">fig. 1 — Samuel Reshevsky, age 8, playing a simultaneous exhibition against a room of adult club players. France, 1920. He won.</div>
+  <div class="hero-coords" aria-hidden="true">40.7776° N, 44.5126° E</div>
+  <div class="wrap hero-inner">
+    <div class="hero-row">
+      <div>
+        <div class="badge"><span class="dot"></span><span data-only="registration">Autumn 2026 · Anahit, Yerevan · Registration open</span><span data-only="play">Autumn 2026 · Anahit, Yerevan · <span id="hero-format">Single round robin</span></span></div>
+        <h1>Anahit Friendly <span class="outline">Chess</span> Tournament<span class="accent">.</span></h1>
+        <p class="lede">May the best pawn win.<br>Ten minutes across a board is the fastest way to meet someone from another team at Anahit. <span data-only="registration">Sign up, learn a few names, lose gracefully.</span><span data-only="play">Play everyone, learn a few names, lose gracefully.</span></p>
+        <div class="cta-row">
+          <a href="#register" class="btn btn-primary" data-only="registration">Register now <span aria-hidden="true">→</span></a>
+          <a href="#standings" class="btn btn-primary" data-only="play">See standings <span aria-hidden="true">→</span></a>
+          <a href="#rules" class="btn btn-ghost">Rules</a>
+        </div>
+      </div>
+      <div class="coin" aria-hidden="true">
+        <div><div class="coin-big">10+0</div><div class="coin-small">no increment<br>no mercy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER (play only) -->
+<div class="ticker" id="ticker" data-only="play" title="Drag me"><div class="ticker-track" id="ticker-track"></div></div>
+
+<!-- STAT STRIP -->
+<div class="stats stats-reg" data-only="registration">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-n" id="reg-count">0</div><div class="stat-l">registered</div></div>
+      <div class="stat"><div class="stat-n" id="reg-days">0</div><div class="stat-l">days to sign up</div></div>
+      <div class="stat"><div class="stat-n" id="reg-format">League</div><div class="stat-l">likely format</div></div>
+      <div class="stat"><div class="stat-n">0</div><div class="stat-l">grandmasters</div></div>
+    </div>
+  </div>
+</div>
+<div class="stats stats-play" data-only="play">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-n" id="play-count">0</div><div class="stat-l">players</div></div>
+      <div class="stat"><div class="stat-n" id="play-total">0</div><div class="stat-l">games total</div></div>
+      <div class="stat"><div class="stat-n accent" id="play-played">0</div><div class="stat-l">played so far</div></div>
+      <div class="stat"><div class="stat-n">0</div><div class="stat-l">grandmasters</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<section id="rules" class="rules">
+  <div class="watermark wm-right" aria-hidden="true">♞</div>
+  <div class="wrap section-pad">
+    <div class="rules-grid">
+      <div>
+        <div class="kicker">§ 01 / How it works</div>
+        <h2>The rules,<br><span class="outline-dark" data-only="registration">so far.</span><span class="outline-dark" data-only="play">briefly.</span></h2>
+        <p class="sub" data-only="registration">The format depends on how many of you show up. The clock doesn't.</p>
+        <p class="sub" data-only="play">Five rules. That's it. Read them once, then go find someone to play.</p>
+        <div class="clock-card">
+          <div class="clock-title">Need a clock?</div>
+          <p>Grab the free Chess.com clock app. Set it to <span class="accent strong">10 + 0</span>.</p>
+          <div class="store-row">
+            <a href="https://apps.apple.com/us/app/chess-clock-by-chess-com/id858039162" target="_blank" rel="noopener" class="store">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.1.8 1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.7-1-2.7-4.1zM14.1 5.7c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg>
+              <span class="store-text"><span class="store-small">Download on the</span><span class="store-big">App Store</span></span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.chess.clock&hl=en" target="_blank" rel="noopener" class="store">
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34a853" d="M3.6 2.4 13.8 12 3.6 21.6c-.4-.2-.6-.7-.6-1.2V3.6c0-.5.2-1 .6-1.2z"/><path fill="#fbbc04" d="M17.2 8.6 20.4 10.4c1 .6 1 1.6 0 2.2l-3.2 1.8L13.8 12z"/><path fill="#4285f4" d="M3.6 2.4c.3-.2.8-.2 1.3.1l12.3 6.1L13.8 12z"/><path fill="#ea4335" d="M13.8 12l3.4 3.4-12.3 6.1c-.5.3-1 .3-1.3.1z"/></svg>
+              <span class="store-text"><span class="store-small">Get it on</span><span class="store-big">Google Play</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <ol class="rule-list">
+        <li class="rule rule-wide light" data-only="registration">
+          <div class="rule-head"><span class="rule-n">1.</span><span class="rule-piece">♜</span></div>
+          <div class="rule-title">Format: decided by headcount</div>
+          <div class="rule-text">Once registration closes, the number of players picks the format:</div>
+          <div class="format-grid">
+            <div class="format-card"><div class="format-title">Round robin league</div><div class="format-text">Smaller field. Everyone plays everyone once. Win 3 · Draw 1 · Loss 0.</div></div>
+            <div class="format-card"><div class="format-title">Knockout bracket</div><div class="format-text">Bigger field. Lose and you're out. Dramatic, but efficient.</div></div>
+          </div>
+        </li>
+        <li class="rule light" data-only="play">
+          <div class="rule-head"><span class="rule-n">1.</span><span class="rule-piece">♜</span></div>
+          <div class="rule-title">One game each</div>
+          <div class="rule-text">Every pair of players plays each other once — a single round robin. Colors are decided by coin toss (or rock-paper-scissors, we're not picky).</div>
+        </li>
+        <li class="rule">
+          <div class="rule-head"><span class="rule-n">2.</span><span class="rule-piece">♛</span></div>
+          <div class="rule-title">Ten minutes each</div>
+          <div class="rule-text">Whatever the format, every game is played with a 10-minute timer per player (10+0, no increment). This one is not up for a vote.</div>
+        </li>
+        <li class="rule" data-only="play">
+          <div class="rule-head"><span class="rule-n">3.</span><span class="rule-piece">♚</span></div>
+          <div class="rule-title">3 · 1 · 0</div>
+          <div class="rule-text">Win = 3 points, Draw = 1 point, Loss = 0 points.</div>
+        </li>
+        <li class="rule light">
+          <div class="rule-head"><span class="rule-n"><span data-only="registration">3.</span><span data-only="play">4.</span></span><span class="rule-piece">♝</span></div>
+          <div class="rule-title">Play nice</div>
+          <div class="rule-text">Standard chess rules apply. Touch-move, be nice, have fun.</div>
+        </li>
+        <li class="rule light">
+          <div class="rule-head"><span class="rule-n"><span data-only="registration">4.</span><span data-only="play">5.</span></span><span class="rule-piece">♞</span></div>
+          <div class="rule-title">Your game, your schedule</div>
+          <div class="rule-text">Players arrange their own games during the tournament period and report the result.</div>
+        </li>
+        <li class="rule dark">
+          <div class="rule-n"><span data-only="registration">5.</span><span data-only="play">6.</span> (unofficial)</div>
+          <div class="rule-title big">Losing to the intern is not a bug.<br>It's a feature.</div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="checker" aria-hidden="true"></div>
+
+<!-- REGISTER (registration only) -->
+<section id="register" class="register" data-only="registration">
+  <div class="watermark wm-right-low light" aria-hidden="true">♟</div>
+  <div class="wrap section-pad">
+    <div class="register-grid">
+      <div>
+        <div class="kicker">§ 02 / Sign up</div>
+        <h2>Fill in your card<span class="accent">.</span></h2>
+        <p class="sub light">This is exactly what will show up in the players section. Type straight onto the card, drop in a photo, hit register. Registration closes <strong>September 30</strong>.</p>
+        <div class="steps">
+          <div><span>01</span><span>Your name, as you'd like it on the board.</span></div>
+          <div><span>02</span><span>A photo. Any photo. A pawn if you must.</span></div>
+          <div><span>03</span><span>Company, or "freelance". We're all Anahit here.</span></div>
+          <div><span>04</span><span>Email, only so we can find you for pairings.</span></div>
+        </div>
+        <div class="already"><span class="already-n" id="already-n">0</span> already in · closes in <span id="countdown-short">—</span></div>
+      </div>
+      <div class="card-col">
+        <form id="reg-form" class="card reg-card" novalidate>
+          <div class="card-code" id="reg-code">P08</div>
+          <div class="card-piece">♟</div>
+          <label class="photo-pick" title="Upload a photo" id="photo-pick">
+            <input type="file" accept="image/*" id="photo-input">
+            <span class="photo-hint" id="photo-hint">+ photo</span>
+          </label>
+          <div class="fields">
+            <input type="text" id="f-name" required placeholder="Your name" autocomplete="name" class="f-name">
+            <input type="text" id="f-company" placeholder="Company, or freelance" autocomplete="organization" class="f-small">
+            <input type="email" id="f-email" required placeholder="you@anahit.am" autocomplete="email" class="f-small">
+          </div>
+          <button type="submit" class="btn btn-submit">Register <span aria-hidden="true">→</span></button>
+          <div class="fine">Email stays with the organizer. Photo goes on the card.</div>
+        </form>
+        <div id="reg-done" class="card reg-card done" hidden>
+          <div class="card-code" id="done-code">P08</div>
+          <div class="card-piece">♟</div>
+          <div class="avatar big" id="done-avatar">?</div>
+          <div class="card-name" id="done-name"></div>
+          <div class="card-company" id="done-company"></div>
+          <div class="done-note">You're in. We'll email <span class="accent" id="done-email"></span> when pairings are out.</div>
+          <button type="button" class="linkish" id="reg-reset">Register someone else</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STANDINGS (play only) -->
+<section id="standings" class="standings" data-only="play">
+  <div class="wrap section-pad">
+    <div class="standings-head">
+      <div>
+        <div class="kicker">§ 02 / Leaderboard</div>
+        <h2>Standings<span class="accent">.</span></h2>
+      </div>
+      <div class="updated"><span class="live"></span>updated <span id="updated-label">today</span> · <span id="st-played">0</span>/<span id="st-total">0</span> games</div>
+    </div>
+    <div class="podium" id="podium"></div>
+    <div class="table-card">
+      <div class="table-scroll">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="c-rank">#</th>
+              <th scope="col">Player</th>
+              <th scope="col" class="c-c" title="Played">P</th>
+              <th scope="col" class="c-c" title="Won">W</th>
+              <th scope="col" class="c-c" title="Drawn">D</th>
+              <th scope="col" class="c-c" title="Lost">L</th>
+              <th scope="col" class="c-form">Last 5</th>
+              <th scope="col" class="c-pts accent">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker alt" aria-hidden="true"></div>
+
+<!-- PLAYERS -->
+<section id="players" class="players">
+  <div class="watermark wm-left-low" aria-hidden="true">♟</div>
+  <div class="wrap section-pad">
+    <div class="kicker"><span data-only="registration">§ 03 / The field so far</span><span data-only="play">§ 03 / The field</span></div>
+    <h2><span data-only="registration">Already in</span><span data-only="play">The players</span><span class="accent">.</span></h2>
+    <p class="sub" data-only="registration"><span id="players-n-reg">0</span> brave colleagues and counting. Some of them know how the knight moves.</p>
+    <p class="sub" data-only="play"><span id="players-n-play">0</span> brave colleagues. Some of them know how the knight moves. Combined Elo: undisclosed.</p>
+    <div class="player-grid" id="player-grid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">Organized with love by Pouya. <span class="accent">1-0</span></div>
+  <div class="wrap dev">preview: <a href="?phase=registration">registration phase</a> · <a href="?phase=play">play phase</a></div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
