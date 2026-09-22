@@ -108,7 +108,19 @@
     pick.addEventListener('click', (e) => { e.stopPropagation(); setMenu(menu.hidden); });
     document.addEventListener('click', (e) => { if (!menu.hidden && !menu.contains(e.target)) setMenu(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-    $('photo-camera').addEventListener('click', () => { setMenu(false); $('photo-input-camera').click(); });
+    // Phones: native camera via the capture input. Desktops ignore `capture`, so use the webcam.
+    const desktop = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    $('photo-camera').addEventListener('click', async () => {
+      setMenu(false);
+      if (!desktop || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $('photo-input-camera').click(); return; }
+      try {
+        const dataUrl = await webcamCapture();
+        if (dataUrl) { photo = dataUrl; pick.style.backgroundImage = `url('${photo}')`; $('photo-hint').hidden = true; }
+      } catch (err) {
+        // No camera or permission denied: fall back to the file picker.
+        $('photo-input').click();
+      }
+    });
     $('photo-library').addEventListener('click', () => { setMenu(false); $('photo-input').click(); });
     async function onPhotoFile(e) {
       const f = e.target.files && e.target.files[0]; if (!f) return;
@@ -155,6 +167,31 @@
       clearTimeout(toastTm); toastTm = setTimeout(() => { $('toast').hidden = true; }, 9000);
     }
     $('toast-close').addEventListener('click', () => { clearTimeout(toastTm); $('toast').hidden = true; });
+  }
+
+  // Opens the webcam dialog; resolves with a 240px JPEG data URL, or null if cancelled. Rejects if no camera.
+  function webcamCapture() {
+    return new Promise(async (resolve, reject) => {
+      const box = $('cam'), video = $('cam-video'), snap = $('cam-snap'), cancel = $('cam-cancel');
+      let stream;
+      try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 640 } }, audio: false }); }
+      catch (e) { reject(e); return; }
+      video.srcObject = stream; box.hidden = false;
+      snap.disabled = true; snap.textContent = 'Starting camera…';
+      video.onplaying = () => { snap.disabled = false; snap.innerHTML = 'Snap <span aria-hidden="true">📷</span>'; };
+      const close = () => { stream.getTracks().forEach((t) => t.stop()); video.onplaying = null; video.srcObject = null; box.hidden = true; snap.onclick = cancel.onclick = null; document.removeEventListener('keydown', onKey); };
+      const onKey = (e) => { if (e.key === 'Escape') { close(); resolve(null); } };
+      document.addEventListener('keydown', onKey);
+      cancel.onclick = () => { close(); resolve(null); };
+      snap.onclick = () => {
+        const size = 240, c = document.createElement('canvas'); c.width = size; c.height = size;
+        const s = Math.min(video.videoWidth, video.videoHeight);
+        const ctx = c.getContext('2d');
+        ctx.translate(size, 0); ctx.scale(-1, 1); // mirror to match the preview
+        ctx.drawImage(video, (video.videoWidth - s) / 2, (video.videoHeight - s) / 2, s, s, 0, 0, size, size);
+        close(); resolve(c.toDataURL('image/jpeg', 0.8));
+      };
+    });
   }
 
   function resizeImage(file, size) {
