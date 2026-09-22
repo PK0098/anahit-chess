@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="styles.css?v=202609222000">
+<link rel="stylesheet" href="styles.css?v=202609222100">
 </head>
 <body data-phase="registration">
 
@@ -29,7 +29,7 @@
   <div class="toast-icon">♟</div>
   <div class="toast-body">
     <div class="toast-title">You're on the board, <span id="toast-name"></span>.</div>
-    <div class="toast-text">The organizer will check your entry and send a confirmation email to <span id="toast-email"></span>. Until then, practice your openings.</div>
+    <div class="toast-text">A welcome email is on its way to <span id="toast-email"></span>. If it isn't in your inbox within a few minutes, <strong>check your spam folder</strong> and mark it “Not spam”, so the pairings don't end up there too.</div>
   </div>
   <button type="button" class="toast-close" id="toast-close" aria-label="Dismiss">×</button>
 </div>
@@ -228,7 +228,7 @@
           <div class="avatar big" id="done-avatar">?</div>
           <div class="card-name" id="done-name"></div>
           <div class="card-company" id="done-company"></div>
-          <div class="done-note">You're in. We'll email <span class="accent" id="done-email"></span> when pairings are out.</div>
+          <div class="done-note">You're in. We'll email <span class="accent" id="done-email"></span> when pairings are out. <span style="color:rgba(239,230,210,0.75)">Not seeing our welcome email? Check spam and mark it “Not spam”.</span></div>
           <button type="button" class="linkish" id="reg-reset">Register someone else</button>
         </div>
       </div>
@@ -302,7 +302,7 @@
   <div class="wrap dev mock-only">preview: <a href="?phase=registration">registration phase</a> · <a href="?phase=play">play phase</a></div>
 </footer>
 
-<script src="data.js?v=202609222000"></script>
-<script src="app.js?v=202609222000"></script>
+<script src="data.js?v=202609222100"></script>
+<script src="app.js?v=202609222100"></script>
 </body>
 </html>

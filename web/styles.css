@@ -196,6 +196,7 @@ h1 { font-size: clamp(44px, 9vw, 108px); line-height: 0.9; text-wrap: balance; m
 .toast-body { flex: 1; min-width: 0; }
 .toast-title { font-family: var(--grot); font-weight: 700; font-size: 16px; letter-spacing: -0.02em; }
 .toast-text { font-size: 13px; line-height: 1.5; color: rgba(239,230,210,0.8); margin-top: 4px; }
+.toast-text strong { color: var(--orange); }
 .toast-close { flex-shrink: 0; background: none; border: none; color: var(--cream); font: inherit; font-size: 18px; line-height: 1; cursor: pointer; padding: 2px 4px; min-width: 32px; min-height: 32px; }
 
 /* STANDINGS */
