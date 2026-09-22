@@ -3,7 +3,7 @@ compatibility_date = "2026-09-01"
 pages_build_output_dir = "web"
 
 [vars]
-SITE_URL = "https://chess.pouyakarimi.com"
+SITE_URL = "https://anahit-chess.pages.dev"
 MAIL_FROM = "Anahit Chess <chess@pouyakarimi.com>"
 ADMIN_EMAIL = "pya.karimi@gmail.com"
 KNOCKOUT_FROM = "12"
