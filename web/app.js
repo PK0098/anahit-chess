@@ -292,5 +292,8 @@
     document.body.dataset.phase = phase;
     document.body.classList.toggle('mock', !live);
     if (phase === 'play') initPlay(state); else initRegistration(state);
+    // Sections are hidden until the phase is known, so re-apply the URL hash now.
+    const target = location.hash && document.querySelector(location.hash);
+    if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'instant', block: 'start' }));
   });
 })();
