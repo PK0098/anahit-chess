@@ -193,10 +193,17 @@
         <form id="reg-form" class="card reg-card" novalidate>
           <div class="card-code" id="reg-code">P08</div>
           <div class="card-piece">♟</div>
-          <label class="photo-pick" title="Upload a photo" id="photo-pick">
-            <input type="file" accept="image/*" id="photo-input">
-            <span class="photo-hint" id="photo-hint">+ photo</span>
-          </label>
+          <div class="photo-wrap">
+            <button type="button" class="photo-pick" title="Add a photo" id="photo-pick" aria-haspopup="menu" aria-expanded="false">
+              <span class="photo-hint" id="photo-hint">+ photo</span>
+            </button>
+            <div class="photo-menu" id="photo-menu" role="menu" hidden>
+              <button type="button" class="photo-opt" id="photo-camera" role="menuitem">📷 Take a photo</button>
+              <button type="button" class="photo-opt" id="photo-library" role="menuitem">🖼 Choose from device</button>
+            </div>
+          </div>
+          <input type="file" accept="image/*" capture="user" id="photo-input-camera" hidden>
+          <input type="file" accept="image/*" id="photo-input" hidden>
           <div class="fields">
             <input type="text" id="f-name" required placeholder="Your name" autocomplete="name" class="f-name">
             <input type="text" id="f-company" placeholder="Company, or freelance" autocomplete="organization" class="f-small">

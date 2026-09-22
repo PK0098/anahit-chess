@@ -165,7 +165,14 @@ h1 { font-size: clamp(44px, 9vw, 108px); line-height: 0.9; text-wrap: balance; m
 .card-code { position: absolute; top: 10px; left: 12px; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
 .card-piece { position: absolute; top: 8px; right: 12px; font-size: 20px; line-height: 1; }
 .photo-pick { display: block; width: 96px; height: 96px; border-radius: 999px; margin: 8px auto 0; border: 2px dashed var(--ink); background: var(--cream) center / cover no-repeat; cursor: pointer; position: relative; overflow: hidden; }
-.photo-pick input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.photo-pick { padding: 0; font: inherit; }
+.photo-wrap { position: relative; display: block; width: 96px; margin: 0 auto; }
+.photo-wrap .photo-pick { margin-top: 8px; }
+.photo-menu { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; display: flex; flex-direction: column; min-width: 200px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.photo-menu[hidden] { display: none; }
+.photo-opt { font: inherit; font-size: 13px; text-align: left; padding: 10px 14px; min-height: 44px; background: transparent; color: var(--ink); border: 0; cursor: pointer; }
+.photo-opt + .photo-opt { border-top: 1px solid var(--ink); }
+.photo-opt:hover { background: var(--ink); color: var(--cream); }
 .photo-hint { position: absolute; inset: 0; display: grid; place-items: center; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); line-height: 1.4; pointer-events: none; }
 .fields { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
 .fields input { width: 100%; text-align: center; background: transparent; border: none; padding: 6px 4px; color: var(--ink); min-height: 44px; font-family: inherit; }

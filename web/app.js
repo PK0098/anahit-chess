@@ -103,13 +103,23 @@
 
     const form = $('reg-form'), done = $('reg-done'), nameIn = $('f-name'), compIn = $('f-company'), emailIn = $('f-email'), err = $('form-error'), btn = form.querySelector('button[type=submit]');
     nameIn.addEventListener('input', () => form.classList.toggle('filled', !!nameIn.value.trim()));
-    $('photo-input').addEventListener('change', async (e) => {
+    const menu = $('photo-menu'), pick = $('photo-pick');
+    const setMenu = (open) => { menu.hidden = !open; pick.setAttribute('aria-expanded', String(open)); };
+    pick.addEventListener('click', (e) => { e.stopPropagation(); setMenu(menu.hidden); });
+    document.addEventListener('click', (e) => { if (!menu.hidden && !menu.contains(e.target)) setMenu(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+    $('photo-camera').addEventListener('click', () => { setMenu(false); $('photo-input-camera').click(); });
+    $('photo-library').addEventListener('click', () => { setMenu(false); $('photo-input').click(); });
+    async function onPhotoFile(e) {
       const f = e.target.files && e.target.files[0]; if (!f) return;
       try {
         photo = await resizeImage(f, 240);
-        $('photo-pick').style.backgroundImage = `url('${photo}')`; $('photo-hint').hidden = true;
+        pick.style.backgroundImage = `url('${photo}')`; $('photo-hint').hidden = true;
       } catch { showError('That image could not be read. Try another one.'); }
-    });
+      e.target.value = '';
+    }
+    $('photo-input').addEventListener('change', onPhotoFile);
+    $('photo-input-camera').addEventListener('change', onPhotoFile);
     function showError(msg) { err.textContent = msg; err.hidden = !msg; }
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); showError('');
