@@ -225,7 +225,7 @@
     $('play-total').textContent = ko ? real.length : n * (n - 1) / 2;
     $('play-played').textContent = gamesPlayed;
     $('players-n-play').textContent = n;
-    $('hero-format').textContent = ko ? 'Knockout bracket' : 'Single round robin';
+    if ($('hero-format')) $('hero-format').textContent = ko ? 'Knockout bracket' : 'Single round robin';
     if (ko) { $('nav-standings').textContent = 'Bracket'; $('nav-standings').href = '#bracket'; $('cta-standings').href = '#bracket'; }
 
     if (state.phase === 'done' && state.champion && byId.get(state.champion)) {
