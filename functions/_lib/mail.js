@@ -2,7 +2,8 @@
 
 export async function sendMail(env, { to, subject, html, text, replyTo }) {
   if (!env.RESEND_API_KEY) { console.error('RESEND_API_KEY missing'); return { ok: false, error: 'no api key' }; }
-  const body = { from: env.MAIL_FROM, to: Array.isArray(to) ? to : [to], subject, html, text };
+  const footerText = '\n\nMade by Pouya · Questions: chess@pouyakarimi.com';
+  const body = { from: env.MAIL_FROM, to: Array.isArray(to) ? to : [to], subject, html, text: text ? text + footerText : undefined };
   if (replyTo) body.reply_to = replyTo;
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -31,7 +32,7 @@ function layout(title, inner) {
     <h1 style="margin:0 0 14px;font-size:24px;line-height:1.1;letter-spacing:-0.03em;font-family:'Space Grotesk',Arial,sans-serif">${title}</h1>
     ${inner}
   </div>
-  <div style="padding:12px 20px;border-top:1px solid #1c1a17;font-size:11px;color:#5c5548">Organized with love by Pouya. Reply to this email to reach your opponent.</div>
+  <div style="padding:12px 20px;border-top:1px solid #1c1a17;font-size:11px;color:#5c5548">Made by Pouya · Questions: <a href="mailto:chess@pouyakarimi.com" style="color:#2b3f6b">chess@pouyakarimi.com</a></div>
 </div></body></html>`;
 }
 

@@ -254,6 +254,7 @@ h1 { font-size: clamp(44px, 9vw, 108px); line-height: 0.9; text-wrap: balance; m
 /* FOOTER */
 .footer { background: var(--ink); color: rgba(239,230,210,0.85); border-top: 3px solid var(--orange); text-align: center; font-size: 14px; }
 .footer .wrap { padding-top: 40px; padding-bottom: 40px; }
+.footer a { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; }
 .footer .dev { padding-top: 0; padding-bottom: 20px; font-size: 11px; color: rgba(239,230,210,0.4); }
 .footer .dev a { text-decoration: underline; }
 
