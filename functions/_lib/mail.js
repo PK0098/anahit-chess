@@ -53,7 +53,7 @@ export const templates = {
       html: layout(`You're on the board, ${esc(first(player.name))}.`, `
         <p>Your card is <strong>${esc(player.code)}</strong>: ${esc(player.name)}, ${esc(player.company)}.</p>
         <p>Registration closes <strong>${fmtDate(env.CLOSE_DATE)}</strong>. Games start <strong>${fmtDate(env.START_DATE)}</strong>. Once the field is set you'll get one email with your opponent(s) and their email address, so you can arrange a time together.</p>
-        <p>Every game: 10 minutes each, no increment. Standard rules. Be nice.</p>
+        <p>Every game: 10 minutes each, no increment. Standard rules. Be nice. Chess sets are in the kitchens on floors 4 and 5.</p>
         ${button(url, 'Your player page')}
         <p style="font-size:12px;color:#5c5548">Keep this email. The link above is personal and is how you report results.</p>`),
       text: `You're on the board, ${first(player.name)}. Card ${player.code}: ${player.name}, ${player.company}.\nRegistration closes ${fmtDate(env.CLOSE_DATE)}, games start ${fmtDate(env.START_DATE)}.\nYour player page: ${url}`,
@@ -75,7 +75,7 @@ export const templates = {
       subject: isNextRound ? `Round ${round}: your next opponent` : `Pairings are out — ${fmt}`,
       replyTo: replyTo.length === 1 ? replyTo[0] : undefined,
       html: layout(title, `${intro}
-        <p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time and a corner of Q hub. Bring a phone with a chess clock app set to 10+0.</p>
+        <p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time. Chess sets are in the kitchens on floors 4 and 5. Bring a phone with a chess clock app set to 10+0.</p>
         <ul style="padding-left:18px;margin:0">${rows}</ul>
         <p>Either player reports the result. The other confirms. Silence for ${esc(env.CONFIRM_HOURS)} hours counts as a confirmation.</p>
         ${button(meLink(env, player.token), 'Your player page')}`),
