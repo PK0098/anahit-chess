@@ -71,13 +71,18 @@ export const templates = {
       ? `<p>You won your last game. Here is round ${round}.</p>`
       : `<p>Registration closed with enough players for a <strong>${fmt}</strong>. ${format === 'ko' ? 'Lose and you\'re out. Win and you get a new opponent by email.' : 'Play everyone once. Win 3, draw 1, loss 0.'}</p>`;
     const replyTo = games.map((g) => g.opponent && g.opponent.email).filter(Boolean);
+    const onlyBye = games.length > 0 && games.every((g) => !g.opponent);
+    const howTo = onlyBye
+      ? `<p>You drew a bye this round, so there is nothing to arrange yet. When the other round ${round} games finish you'll get an email with your next opponent.</p>`
+      : `<p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time. Chess sets are in the kitchens on floors 4 and 5. Bring a phone with a chess clock app set to 10+0.</p>`;
+    const reporting = onlyBye ? '' : `<p>Either player reports the result. The other confirms. Silence for ${esc(env.CONFIRM_HOURS)} hours counts as a confirmation.</p>`;
     return {
-      subject: isNextRound ? `Round ${round}: your next opponent` : `Pairings are out — ${fmt}`,
+      subject: isNextRound ? `Round ${round}: your next opponent` : onlyBye ? `Pairings are out — you have a bye in round ${round}` : `Pairings are out — ${fmt}`,
       replyTo: replyTo.length === 1 ? replyTo[0] : undefined,
       html: layout(title, `${intro}
-        <p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time. Chess sets are in the kitchens on floors 4 and 5. Bring a phone with a chess clock app set to 10+0.</p>
+        ${howTo}
         <ul style="padding-left:18px;margin:0">${rows}</ul>
-        <p>Either player reports the result. The other confirms. Silence for ${esc(env.CONFIRM_HOURS)} hours counts as a confirmation.</p>
+        ${reporting}
         ${button(meLink(env, player.token), 'Your player page')}`),
       text: `${title}\n${games.map((g) => g.opponent ? `- ${g.opponent.name} (${g.opponent.company}) ${g.opponent.email}\n  report: ${gameLink(env, player.token, g.id)}` : '- Bye: you advance without playing').join('\n')}\nYour page: ${meLink(env, player.token)}`,
     };
