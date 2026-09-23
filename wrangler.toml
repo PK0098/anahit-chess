@@ -13,5 +13,5 @@ START_DATE = "2026-10-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "qhub-chess"
+database_name = "anahit-chess"
 database_id = "5595d5e9-9445-49a7-b4c5-c2bf8fc27639"
