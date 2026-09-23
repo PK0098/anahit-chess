@@ -99,6 +99,12 @@ Account: personal Cloudflare account (Gmail login), ID `6f70f92c2dea901344b965d8
 
 Gotchas seen so far: `wrangler pages project create` for new projects now delegates to Workers (use a Worker with `[assets]` instead, as `homepage/` does). In `wrangler.toml`, top-level keys like `routes` must come before any `[section]`. If wrangler complains about a project named "hess tourney", delete a stray `wrangler.jsonc`.
 
+## Analytics
+
+Cloudflare Web Analytics (cookie-free, no consent banner). `pouyakarimi.com` uses Cloudflare's automatic injection; `anahit-chess.pages.dev` has the beacon snippet at the bottom of `web/index.html` and `web/game.html` (not on `/admin`). Dashboard: Cloudflare, Analytics, Web analytics.
+
+The flyer's QR code should point to `https://anahit-chess.pages.dev/flyer`. That path (`functions/flyer.js`) increments `settings.flyer_scans` in D1 and redirects to `/`. The count shows on the organizer page.
+
 ## Known gaps
 
 - No accounts; personal links are the only identity. Anyone with a link can act as that player.
