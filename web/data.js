@@ -2,17 +2,17 @@
 // Shape mirrors the API response.
 (function () {
   const names = [
-    ['Ani Petrosyan', 'Anahit', 'Plays the London System. Unironically.'],
+    ['Ani Petrosyan', 'Q hub', 'Plays the London System. Unironically.'],
     ['Davit Hakobyan', 'Freelance', 'Reigning coffee-break champion.'],
-    ['Narek Sargsyan', 'Anahit', 'Sicilian or nothing.'],
+    ['Narek Sargsyan', 'Q hub', 'Sicilian or nothing.'],
     ['Lilit Avetisyan', 'Pharmabits', 'Has never lost on time. Has never finished a game either.'],
-    ['Tigran Grigoryan', 'Anahit', 'Castles early. Regrets nothing.'],
+    ['Tigran Grigoryan', 'Q hub', 'Castles early. Regrets nothing.'],
     ['Mariam Karapetyan', 'Freelance', 'Will offer a draw. Decline at your own risk.'],
-    ['Hayk Mkrtchyan', 'Anahit', 'Learned chess last month. Dangerous.'],
+    ['Hayk Mkrtchyan', 'Q hub', 'Learned chess last month. Dangerous.'],
     ['Sona Harutyunyan', 'Pharmabits', 'Queen’s Gambit, accepted.'],
     ['Aram Vardanyan', 'Freelance', 'Plays the bongcloud. Has won with it.'],
-    ['Anahit Hovhannisyan', 'Anahit', 'Endgame specialist (the snacks part).'],
-    ['Levon Galstyan', 'Anahit', 'Knight before bishop. Always.'],
+    ['Anahit Hovhannisyan', 'Q hub', 'Endgame specialist (the snacks part).'],
+    ['Levon Galstyan', 'Q hub', 'Knight before bishop. Always.'],
     ['Nare Simonyan', 'Freelance', 'Here for the vibes and the en passant.'],
   ];
   const players = names.map(([name, company, tag], i) => ({ id: i + 1, code: 'P' + String(i + 1).padStart(2, '0'), name, company, tag, hasPhoto: false }));

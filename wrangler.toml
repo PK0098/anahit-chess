@@ -1,10 +1,10 @@
-name = "anahit-chess"
+name = "qhub-chess"
 compatibility_date = "2026-09-01"
 pages_build_output_dir = "web"
 
 [vars]
-SITE_URL = "https://anahit-chess.pages.dev"
-MAIL_FROM = "Anahit Chess <chess@pouyakarimi.com>"
+SITE_URL = "https://qhub-chess.pages.dev"
+MAIL_FROM = "Q hub Chess <chess@pouyakarimi.com>"
 ADMIN_EMAIL = "pya.karimi@gmail.com"
 KNOCKOUT_FROM = "12"
 CONFIRM_HOURS = "48"
@@ -13,5 +13,5 @@ START_DATE = "2026-10-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "anahit-chess"
+database_name = "qhub-chess"
 database_id = "5595d5e9-9445-49a7-b4c5-c2bf8fc27639"

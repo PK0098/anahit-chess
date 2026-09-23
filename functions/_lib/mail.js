@@ -27,7 +27,7 @@ const fmtDate = (iso) => { try { return new Date(iso).toLocaleDateString('en-GB'
 function layout(title, inner) {
   return `<!doctype html><html><body style="margin:0;background:#efe6d2;padding:24px 12px;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;color:#1c1a17">
 <div style="max-width:560px;margin:0 auto;background:#faf6ec;border:2px solid #1c1a17;box-shadow:8px 8px 0 #e0552b">
-  <div style="background:#1c1a17;color:#efe6d2;padding:14px 20px;border-bottom:3px solid #e0552b;font-weight:700;font-size:16px;letter-spacing:-0.02em">ANAHIT_CHESS</div>
+  <div style="background:#1c1a17;color:#efe6d2;padding:14px 20px;border-bottom:3px solid #e0552b;font-weight:700;font-size:16px;letter-spacing:-0.02em">QHUB_CHESS</div>
   <div style="padding:22px 20px;font-size:14px;line-height:1.6">
     <h1 style="margin:0 0 14px;font-size:24px;line-height:1.1;letter-spacing:-0.03em;font-family:'Space Grotesk',Arial,sans-serif">${title}</h1>
     ${inner}
@@ -75,7 +75,7 @@ export const templates = {
       subject: isNextRound ? `Round ${round}: your next opponent` : `Pairings are out — ${fmt}`,
       replyTo: replyTo.length === 1 ? replyTo[0] : undefined,
       html: layout(title, `${intro}
-        <p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time and a corner of Anahit. Bring a phone with a chess clock app set to 10+0.</p>
+        <p>Email your opponent${games.length > 1 ? 's' : ''} to pick a time and a corner of Q hub. Bring a phone with a chess clock app set to 10+0.</p>
         <ul style="padding-left:18px;margin:0">${rows}</ul>
         <p>Either player reports the result. The other confirms. Silence for ${esc(env.CONFIRM_HOURS)} hours counts as a confirmation.</p>
         ${button(meLink(env, player.token), 'Your player page')}`),
@@ -123,10 +123,10 @@ export const templates = {
     return {
       subject: `We have a champion: ${champion.name}`,
       html: layout(`We have a champion.`, `
-        <p><strong>${esc(champion.name)}</strong> (${esc(champion.company)}) won the Anahit Friendly Chess Tournament.</p>
+        <p><strong>${esc(champion.name)}</strong> (${esc(champion.company)}) won the Q hub Friendly Chess Tournament.</p>
         <p>Thanks for playing. Go say hi to someone you played.</p>
         ${button(env.SITE_URL, 'See the final bracket')}`),
-      text: `${champion.name} (${champion.company}) won the Anahit Friendly Chess Tournament. ${env.SITE_URL}`,
+      text: `${champion.name} (${champion.company}) won the Q hub Friendly Chess Tournament. ${env.SITE_URL}`,
     };
   },
 };
