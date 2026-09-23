@@ -37,7 +37,7 @@
     $('kv').innerHTML = `
       <div>Phase<b>${esc(phase)}</b></div><div>Format<b>${esc(d.settings.format || '—')}</b></div>
       <div>Players<b>${d.players.length}</b></div><div>Games confirmed<b>${d.games.filter((g) => g.status === 'confirmed' && g.p2 !== null).length} / ${d.games.filter((g) => g.p2 !== null).length}</b></div>
-      <div>Knockout from<b>${esc(d.vars.KNOCKOUT_FROM)}</b></div><div>Closes<b style="font-size:13px">${esc(d.vars.CLOSE_DATE)}</b></div>
+      <div>Flyer scans<b>${esc(d.settings.flyer_scans || 0)}</b></div><div>Knockout from<b>${esc(d.vars.KNOCKOUT_FROM)}</b></div><div>Closes<b style="font-size:13px">${esc(d.vars.CLOSE_DATE)}</b></div>
       <div>Mail from<b style="font-size:12px">${esc(d.vars.MAIL_FROM)}</b></div><div>Site<b style="font-size:12px">${esc(d.vars.SITE_URL)}</b></div>`;
     $('close-btn').disabled = phase !== 'registration' || d.players.length < 2;
 
