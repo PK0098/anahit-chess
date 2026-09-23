@@ -72,7 +72,7 @@ input:focus { outline: none; border-color: var(--orange) !important; }
 .nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-links a { padding: 8px 12px; font-weight: 500; font-size: 13px; color: var(--cream); white-space: nowrap; border-bottom: 2px solid transparent; }
-.nav-links a:hover { color: var(--orange); border-bottom-color: var(--orange); }
+@media (hover: hover) { .nav-links a:hover { color: var(--orange); border-bottom-color: var(--orange); } }
 .nav-links a.accent { color: var(--orange); }
 
 /* HERO */
